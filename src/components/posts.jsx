@@ -11,7 +11,6 @@ const Posts =()=>{
         })
         .then ((data)=>{
             setAllPost(data)
-            console.log(data)
         })
         .catch(function(error) {
             console.log(error);
