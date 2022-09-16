@@ -10,18 +10,7 @@ function App() {
  
       <Routes>
         <Route path="/" element={<Posts />} />
-        <Route path="/post/:id" 
-      //   loader={await = ()=>{
-      //     if(!title){
-      //       return fetch ('https://jsonplaceholder.typicode.com/posts',{
-      //         method: "post",
-      //         body: JSON.stringify({
-
-      //       })
-      //     }
-
-      // }}
-        element={<PostsID />} />
+        <Route path="/post/:id" element={<PostsID />} />
       </Routes>
       <footer className='App-footer'></footer>
 
