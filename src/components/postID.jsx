@@ -19,16 +19,7 @@ const PostID = () => {
       })
       .then((data) => {
         setTitleState(data[0].title);
-      });
-  }
-  if (!bodyState) {
-    fetch(`https://jsonplaceholder.typicode.com/posts?id=${id}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
         setBodyState(data[0].body);
-        console.log(data[0].body);
       });
   }
   const getuser = () => {
@@ -56,6 +47,7 @@ const PostID = () => {
           Till Start
         </Link>
       </button>
+      <h2>Kommentarer</h2>
       {User.map((comment, i) => (
         <Postlayout
           body={comment.body}
