@@ -6,14 +6,31 @@ const PostID = () => {
   const [User, setUser] = useState([]);
   const { id } = useParams();
   const location = useLocation();
-  const title= location.state?.title;
+  const title = location.state?.title;
+  console.log(title);
+  const body = location.state?.body;
+  console.log(body);
   const [titleState, setTitleState] = useState(title);
+  const [bodyState, setBodyState] = useState(body);
   if (!titleState) {
     fetch(`https://jsonplaceholder.typicode.com/posts?id=${id}`)
-      .then((response) => {return response.json()})
-      .then((data)=>{setTitleState(data[0].title)})
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setTitleState(data[0].title);
+      });
   }
-
+  if (!bodyState) {
+    fetch(`https://jsonplaceholder.typicode.com/posts?id=${id}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setBodyState(data[0].body);
+        console.log(data[0].body);
+      });
+  }
   const getuser = () => {
     fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
       .then((response) => {
@@ -27,23 +44,24 @@ const PostID = () => {
       });
   };
   useEffect(() => {
-    getuser();}, []
-  );
+    getuser();
+  }, []);
 
   return (
     <div className="userContainer">
       <h2>{titleState}</h2>
+      <h3>{bodyState}</h3>
       <button>
         <Link className="btntitle" to="/">
           Till Start
         </Link>
       </button>
-      {User.map((comment,i) => (
+      {User.map((comment, i) => (
         <Postlayout
           body={comment.body}
           name={comment.name}
           email={comment.email}
-          key ={i}
+          key={i}
         />
       ))}
     </div>
